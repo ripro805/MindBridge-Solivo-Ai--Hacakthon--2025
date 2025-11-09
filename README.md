@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MindBridge - AI-Powered Mental Health Support
 
 A privacy-first, bilingual (Bangla + English) Progressive Web App (PWA) for early mental health detection and support, designed specifically for Bangladesh.
@@ -287,3 +288,7 @@ This is a prototype for demonstration purposes. For production deployment, ensur
 ## 🙏 Acknowledgments
 
 Designed for culturally sensitive mental health support in Bangladesh. Built with privacy and accessibility as core principles.
+=======
+# MindBridge-Solivo-Ai--Hacakthon--2025
+MindBridge is an AI-powered platform that detects early signs of stress, depression, and burnout through text, voice, and facial analysis. Built with Lovable AI, it enables bilingual, privacy-first mental health monitoring using federated learning and on-device intelligence.
+>>>>>>> b4c2c01bb5f78021f814ccdec9f4190837492e19
