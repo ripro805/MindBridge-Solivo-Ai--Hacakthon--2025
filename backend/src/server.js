@@ -12,8 +12,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+// Allow all origins in production for now (update FRONTEND_URL in Railway after deployment)
+const allowedOrigins = process.env.FRONTEND_URL 
+  ? process.env.FRONTEND_URL.split(',').map(url => url.trim())
+  : ['http://localhost:8080', 'http://localhost:5173'];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',') : ['http://localhost:8080', 'http://localhost:5173'],
+  origin: process.env.NODE_ENV === 'production' ? true : allowedOrigins,
   credentials: true
 }));
 app.use(express.json());
