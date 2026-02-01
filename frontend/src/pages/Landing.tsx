@@ -97,21 +97,7 @@ export default function Landing() {
                 <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Private</div>
               </div>
             </div>
-            
-            {/* CTA Button */}
-            <div className="flex justify-center pt-8 animate-fade-in-up animation-delay-800">
-              <Button 
-                size="lg" 
-                asChild 
-                className="bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 hover:from-teal-600 hover:via-blue-600 hover:to-purple-600 text-white text-lg px-10 py-6 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300"
-              >
-                <Link to="/auth" className="flex items-center gap-2">
-                  <Heart className="w-5 h-5" />
-                  {t('landing.getStarted')}
-                  <Sparkles className="w-5 h-5" />
-                </Link>
-              </Button>
-            </div>
+
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center gap-8 pt-12 text-gray-600 dark:text-gray-400 text-sm animate-fade-in-up animation-delay-1000">
