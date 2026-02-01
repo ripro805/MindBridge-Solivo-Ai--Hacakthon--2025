@@ -2,7 +2,12 @@
 
 A privacy-first, bilingual (Bangla + English) Progressive Web App (PWA) for early mental health detection and support, designed specifically for Bangladesh.
 
-## 🎯 All Features Implemented ✅
+## � Live Demo
+
+**Frontend**: [https://mind-bridgerp.netlify.app/](https://mind-bridgerp.netlify.app/)  
+**Backend API**: [https://mindbridge-solivo-ai-hacakthon-2025-production.up.railway.app/](https://mindbridge-solivo-ai-hacakthon-2025-production.up.railway.app/)
+
+## �🎯 All Features Implemented ✅
 
 ### ✅ 1. Profile Data Loading
 - User profile data loads properly from backend
@@ -293,16 +298,7 @@ npm run create-admin
 
 ## 🌐 Environment Variables
 
-### Backend (.env)
-```env
-PORT=5000
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=mindbridge_db
-DB_USER=postgres
-DB_PASSWORD=ripro805
-JWT_SECRET=your-secret-key
-HUGGINGFACE_API_KEY=optional
+
 ```
 
 ### Frontend (.env)
