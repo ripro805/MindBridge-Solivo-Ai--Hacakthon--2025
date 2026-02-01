@@ -35,7 +35,8 @@ app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'ok', 
     message: 'MindBridge API is running',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    version: '1.0.1'
   });
 });
 
