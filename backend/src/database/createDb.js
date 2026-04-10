@@ -5,6 +5,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const createDatabase = async () => {
+  // Managed PostgreSQL services (Neon/Railway/Supabase, etc.) already provide a database.
+  // Skip CREATE DATABASE to avoid unnecessary errors and keep existing data untouched.
+  if (process.env.DATABASE_URL) {
+    console.log('ℹ️  DATABASE_URL detected. Skipping database creation step for managed PostgreSQL.');
+    console.log('✅ Existing database will be used as-is (no data will be modified by createDb).');
+    return true;
+  }
+
   // First connect to postgres database to create our database
   const client = new Client({
     host: process.env.DB_HOST || 'localhost',

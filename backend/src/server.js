@@ -40,6 +40,25 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Root route for platform checks and manual browser tests
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'MindBridge Backend is running',
+    apiHealth: '/api/health',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// Optional non-api health alias (some platforms/tools hit /health)
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'MindBridge health check',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/check-ins', checkInRoutes);
