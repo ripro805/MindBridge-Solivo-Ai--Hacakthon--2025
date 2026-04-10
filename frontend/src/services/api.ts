@@ -19,23 +19,36 @@ const apiCall = async (endpoint: string, options: any = {}) => {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15000);
-  let response: Response;
+  let response: Response | null = null;
+  let lastError: any = null;
 
-  try {
-    response = await fetch(`${API_URL}${endpoint}`, {
-      ...options,
-      headers,
-      signal: controller.signal,
-    });
-  } catch (error: any) {
-    if (error?.name === 'AbortError') {
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
+
+    try {
+      response = await fetch(`${API_URL}${endpoint}`, {
+        ...options,
+        headers,
+        signal: controller.signal,
+      });
+      lastError = null;
+      break;
+    } catch (error: any) {
+      lastError = error;
+      if (attempt < 2) {
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+      }
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  if (!response) {
+    if (lastError?.name === 'AbortError') {
       throw new Error('Request timed out. Please try again.');
     }
     throw new Error(`Network error: cannot reach server (${API_URL}). Please check backend deployment/CORS.`);
-  } finally {
-    clearTimeout(timeout);
   }
 
   if (!response.ok) {
