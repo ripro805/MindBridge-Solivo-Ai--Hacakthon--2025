@@ -5,7 +5,7 @@ A privacy-first, bilingual (Bangla + English) Progressive Web App (PWA) for earl
 ## � Live Demo
 
 **Frontend**: [https://mind-bridgerp.netlify.app/](https://mind-bridgerp.netlify.app/)  
-**Backend API**: [https://mindbridge-solivo-ai-hacakthon-2025-production.up.railway.app/](https://mindbridge-solivo-ai-hacakthon-2025-production.up.railway.app/)
+**Backend API**: [https://mindbridge-solivo-ai-hacakthon-2025.onrender.com/](https://mindbridge-solivo-ai-hacakthon-2025.onrender.com/)
 
 ## �🎯 All Features Implemented ✅
 
@@ -345,7 +345,10 @@ Built for Solivo AI Hackathon 2025
 
 ## 📄 License
 
-MIT License
+This project is licensed under the **MIT License**.
+
+- See the full license text in [`LICENSE`](./LICENSE).
+- Third-party libraries used in this project are subject to their own respective licenses.
 
 ---
 
