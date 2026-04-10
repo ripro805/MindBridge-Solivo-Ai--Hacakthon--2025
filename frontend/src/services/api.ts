@@ -1,4 +1,6 @@
-const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:5000/api';
+const DEFAULT_PROD_API_URL = 'https://mindbridge-solivo-ai-hacakthon-2025.onrender.com/api';
+const envApiUrl = (import.meta as any).env?.VITE_API_URL?.trim();
+const API_URL = (envApiUrl || ((import.meta as any).env?.PROD ? DEFAULT_PROD_API_URL : 'http://localhost:5000/api')).replace(/\/+$/, '');
 
 // Helper function to get auth token
 const getAuthToken = () => {
@@ -17,10 +19,24 @@ const apiCall = async (endpoint: string, options: any = {}) => {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_URL}${endpoint}`, {
-    ...options,
-    headers,
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  let response: Response;
+
+  try {
+    response = await fetch(`${API_URL}${endpoint}`, {
+      ...options,
+      headers,
+      signal: controller.signal,
+    });
+  } catch (error: any) {
+    if (error?.name === 'AbortError') {
+      throw new Error('Request timed out. Please try again.');
+    }
+    throw new Error(`Network error: cannot reach server (${API_URL}). Please check backend deployment/CORS.`);
+  } finally {
+    clearTimeout(timeout);
+  }
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({ error: 'Request failed' }));
