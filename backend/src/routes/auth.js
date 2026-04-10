@@ -11,6 +11,10 @@ router.post('/register', async (req, res) => {
   try {
     const { email, password, fullName, language = 'en', theme = 'light', role = 'user' } = req.body;
 
+    if (!email || !password || !fullName) {
+      return res.status(400).json({ error: 'Email, password, and full name are required' });
+    }
+
     // Check if user exists
     const existingUser = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     if (existingUser.rows.length > 0) {
@@ -37,8 +41,8 @@ router.post('/register', async (req, res) => {
     // Add to admin_users table if role is admin
     if (role === 'admin') {
       await pool.query(
-        'INSERT INTO admin_users (email, role) VALUES ($1, $2) ON CONFLICT (email) DO NOTHING',
-        [user.email, 'admin']
+        'INSERT INTO admin_users (email, password, role) VALUES ($1, $2, $3) ON CONFLICT (email) DO NOTHING',
+        [user.email, hashedPassword, 'admin']
       );
     }
 
